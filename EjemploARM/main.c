@@ -297,33 +297,31 @@ int main (void)
    // ******************************************************
    // Test exclusive transactions
    // ******************************************************
-   
    // Data TCM supports exclusive access
-   status = atomic_access(&dtcmTest,0x12341230);
-   if (status == 1) {
-   print( "STREX DTCM failed unexpectedly\r\n");
-   }
+  status = atomic_access(&dtcmTest,0x12341230);
+  if (status == 1) {
+  print( "STREX DTCM failed unexpectedly\r\n");
+  }
    // Instruction TCM supports exclusive access (ARTY connected)
-   status = atomic_access((uint32_t*)0x10001000,0x12341231);
-   if (status == 1) {
-   print( "STREX ITCM high alias failed unexpectedly\r\n");
-   }
+  status = atomic_access((uint32_t*)0x10001000,0x12341231);
+  if (status == 1) {
+  print( "STREX ITCM high alias failed unexpectedly\r\n");
+  }
    // Instruction QSPI region, no exclusive monitor
    // Unused vector table entry after Usage fault handler
-   status = atomic_access((uint32_t*)0x0000001c,0x12341232);
-   if (status == 1 && DAPLinkFittedn) {
-   print( "STREX ITCM low alias failed unexpectedly\r\n");
-   }
-   if (status == 0 && !DAPLinkFittedn) {
-   print( "STREX QSPI success (unexpected)\r\n");
-   }               
+  status = atomic_access((uint32_t*)0x0000001c,0x12341232);
+  if (status == 1 && DAPLinkFittedn) {
+  print( "STREX ITCM low alias failed unexpectedly\r\n");
+  }
+  if (status == 0 && !DAPLinkFittedn) {
+  print( "STREX QSPI success (unexpected)\r\n");
+  }               
    // BRAM region is external, no exclusive monitor
-   status = atomic_access((uint32_t*)XPAR_BRAM_0_BASEADDR,0x12341233);
-   if (status == 0 && !DAPLinkFittedn) {
-   print( "STREX BRAM success (unexpected)\r\n");
-   }
-   print( "Atomic transaction test completed\r\n" );
-   
+  status = atomic_access((uint32_t*)XPAR_BRAM_0_BASEADDR,0x12341233);
+  if (status == 0 && !DAPLinkFittedn) {
+  print( "STREX BRAM success (unexpected)\r\n");
+  }
+  print( "Atomic transaction test completed\r\n" );
 
    // print( "Startup complete, entering main interrupt loop\r\n" );
 
@@ -336,7 +334,7 @@ int main (void)
         if ( CheckUARTRxBytes() != 0 )
             print ("x");
         */
-    
+
     }
 }
 
